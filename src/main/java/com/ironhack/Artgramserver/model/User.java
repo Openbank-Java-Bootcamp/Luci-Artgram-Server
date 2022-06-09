@@ -37,7 +37,7 @@ public class User {
     private Collection<Role> roles = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<Like> likes;
+    private List<Love> likes;
 
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;

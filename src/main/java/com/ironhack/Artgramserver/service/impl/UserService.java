@@ -6,12 +6,14 @@ import com.ironhack.Artgramserver.repository.UserRepository;
 import com.ironhack.Artgramserver.service.interfaces.UserServiceInterface;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,6 +22,7 @@ import java.util.List;
 @Service
 @Slf4j
 public class UserService implements UserServiceInterface, UserDetailsService {
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -33,6 +36,13 @@ public class UserService implements UserServiceInterface, UserDetailsService {
         User user = new User(userSignupDTO.getName(), userSignupDTO.getEmail(), userSignupDTO.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    @Override
+    public void updateUser(Long id, User user) {
+        User userFromDB = userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not found"));
+        user.setId(userFromDB.getId());
+        userRepository.save(user);
     }
 
     public List<User> getUsers() {

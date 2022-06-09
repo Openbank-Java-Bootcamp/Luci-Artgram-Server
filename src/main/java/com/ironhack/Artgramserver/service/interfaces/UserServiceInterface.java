@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface UserServiceInterface {
     User saveUser(User userSignupDTO);
-
+    void updateUser(Long id, User user);
     List<User> getUsers();
 }

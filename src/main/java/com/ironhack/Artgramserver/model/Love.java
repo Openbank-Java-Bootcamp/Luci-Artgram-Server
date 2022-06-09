@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Like {
+public class Love {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

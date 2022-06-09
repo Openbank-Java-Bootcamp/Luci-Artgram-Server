@@ -22,13 +22,13 @@ public class Painting {
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @OneToMany(mappedBy = "painting")
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "painting")
-    private List<Like> likes;
+    private List<Love> loves;
 
 }
