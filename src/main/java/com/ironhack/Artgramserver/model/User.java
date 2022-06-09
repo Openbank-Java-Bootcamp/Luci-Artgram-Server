@@ -13,6 +13,7 @@ import java.util.List;
 
 
 @Entity
+@Table(name="users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,6 +32,7 @@ public class User {
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,}",
             message = "Password must have at least 6 characters and contain at least one number, one lowercase and one uppercase letter.")
     private String password;
+
     private String avatar;
 
     @ManyToMany(fetch = FetchType.EAGER)
