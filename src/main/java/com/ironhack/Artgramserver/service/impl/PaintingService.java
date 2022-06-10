@@ -27,6 +27,7 @@ public class PaintingService implements PaintingServiceInterface {
             if(optionalPainting.isPresent())
                 throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Painting with id " + painting.getId() + " already exist");
         }
+        paintingRepository.save(painting);
     }
 
 

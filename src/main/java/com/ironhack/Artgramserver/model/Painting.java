@@ -17,6 +17,7 @@ public class Painting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Lob
     private String picturePath;
     private String title;
     private String description;
