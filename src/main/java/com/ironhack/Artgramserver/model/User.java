@@ -44,10 +44,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
 
-    public User(String name, String email, String password) {
+    public User(String name, String email, String password, String avatar) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.avatar = avatar;
     }
 
     public User(String name) {

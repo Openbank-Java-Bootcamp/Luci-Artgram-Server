@@ -40,5 +40,6 @@ public class PaintingService implements PaintingServiceInterface {
 
     public void deletePainting(Long id) {
     Painting paintingFromDB = paintingRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Painting not found"));
+        paintingRepository.deleteById(id);
     }
 }

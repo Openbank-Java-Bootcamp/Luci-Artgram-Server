@@ -44,9 +44,9 @@ public class PaintingController {
         paintingService.updatePainting(id, painting);
     }
 
-    @DeleteMapping("/paintings/{id}")
+    @DeleteMapping("/paintings/{paintingId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePainting(@PathVariable Long id){
+    public void deletePainting(@PathVariable(name = "paintingId") Long id){
         paintingService.deletePainting(id);
     }
 }
