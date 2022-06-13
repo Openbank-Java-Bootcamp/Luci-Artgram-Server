@@ -19,7 +19,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    @PostMapping("/{paintingId}/comments")
+    @PostMapping("/{paintingId}/comment")
     @ResponseStatus(HttpStatus.CREATED)
     public void addComment(@Valid @RequestBody CommentDTO comment){
        commentService.saveComment(comment);

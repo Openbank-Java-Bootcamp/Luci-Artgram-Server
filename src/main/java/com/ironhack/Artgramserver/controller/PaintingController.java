@@ -28,7 +28,8 @@ public class PaintingController {
     }
 
     @GetMapping("/paintings/user/{userId}")
-    public List<Painting> getPaintingsByUserId(Long userId) {
+    @ResponseStatus(HttpStatus.OK)
+    public List<Painting> getPaintingsByUserId(@PathVariable Long userId) {
         return paintingService.findByUserId(userId);
     }
 
