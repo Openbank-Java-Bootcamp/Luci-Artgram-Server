@@ -10,9 +10,9 @@ import java.util.Optional;
 
 @Repository
 public interface LoveRepository extends JpaRepository<Love, Long> {
-    @Query("SELECT love FROM Love WHERE love.painting.id = :paintingId and love.user.id = :userId")
-    Optional<Love> findLoveByPaintingIdByUserId(@Param("userId") Long userId, @Param("paintingId") Long paintingId);
+    //@Query(value = "SELECT love FROM Love WHERE love.painting.id = :paintingId and love.user.id = :userId")
+    Optional<Love> findByPaintingIdAndUserId(@Param("userId") Long userId, @Param("paintingId") Long paintingId);
 
-    @Query("SELECT COUNT(love.id) FROM Love love where love.painting.id = :paintingId")
+    //@Query(value="SELECT COUNT(love.id) FROM Love love where love.painting.id = :paintingId")
     Long countByPaintingId(@Param("paintingId") Long paintingId);
 }

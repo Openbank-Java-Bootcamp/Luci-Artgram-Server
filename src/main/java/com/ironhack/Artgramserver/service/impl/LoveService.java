@@ -33,7 +33,7 @@ public class LoveService implements LoveServiceInterface {
         Painting painting = paintingRepository.findById(paintingId).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Painting not found"));
         Optional<User> user = userRepository.findById(currentUser.getId());
-        Optional<Love> love = loveRepository.findLoveByPaintingIdByUserId(user.get().getId(), paintingId);
+        Optional<Love> love = loveRepository.findByPaintingIdAndUserId(user.get().getId(), paintingId);
 
         if(love.isPresent()){
             loveRepository.deleteById(love.get().getId());

@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class PaintingService implements PaintingServiceInterface {
@@ -25,6 +26,11 @@ public class PaintingService implements PaintingServiceInterface {
 
     public Painting findById(Long id) {
         return paintingRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Painting not found"));
+    }
+
+
+    public List<Painting> findByUserId(Long userId) {
+        return paintingRepository.findByUserId(userId);
     }
 
 

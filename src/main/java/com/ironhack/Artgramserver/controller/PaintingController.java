@@ -27,6 +27,11 @@ public class PaintingController {
         return paintingRepository.findAll();
     }
 
+    @GetMapping("/paintings/user/{userId}")
+    public List<Painting> getPaintingsByUserId(Long userId) {
+        return paintingService.findByUserId(userId);
+    }
+
     @GetMapping("/paintings/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Painting getPaintingById(@PathVariable(name = "id") Long paintingId) {
