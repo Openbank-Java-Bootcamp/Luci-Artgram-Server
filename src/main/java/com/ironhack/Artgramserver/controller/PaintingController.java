@@ -5,6 +5,7 @@ import com.ironhack.Artgramserver.repository.PaintingRepository;
 import com.ironhack.Artgramserver.service.impl.PaintingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -34,8 +35,8 @@ public class PaintingController {
 
     @PostMapping("/paintings")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addPainting(@RequestBody @Valid Painting painting){
-        paintingService.savePainting(painting);
+    public void addPainting(@RequestBody @Valid Painting painting, Authentication authentication){
+        paintingService.savePainting(painting, authentication);
     }
 
     @PutMapping("/paintings/{id}")
