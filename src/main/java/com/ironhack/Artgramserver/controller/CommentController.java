@@ -1,10 +1,13 @@
 package com.ironhack.Artgramserver.controller;
 
 import com.ironhack.Artgramserver.DTO.CommentDTO;
+import com.ironhack.Artgramserver.model.Comment;
+import com.ironhack.Artgramserver.model.Painting;
 import com.ironhack.Artgramserver.service.impl.CommentService;
 import com.ironhack.Artgramserver.service.impl.PaintingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,15 +22,22 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    @PostMapping("/{paintingId}/comment")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addComment(@Valid @RequestBody CommentDTO comment){
-       commentService.saveComment(comment);
+
+    @GetMapping("/comments/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Comment getCommentById(@PathVariable(name = "id") Long commentId) {
+        return commentService.findById(commentId);
     }
 
-    @DeleteMapping("/comments/{commentId}")
+    @PostMapping("/comments")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addComment(@Valid @RequestBody CommentDTO comment, Authentication authentication){
+       commentService.saveComment(comment, authentication);
+    }
+
+    @DeleteMapping("/comments/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteComment(@PathVariable(name = "commentId") Long id){
-        commentService.deleteComment(id);
+    public void deleteComment(@PathVariable(name = "id") Long commentId){
+        commentService.deleteComment(commentId);
     }
 }

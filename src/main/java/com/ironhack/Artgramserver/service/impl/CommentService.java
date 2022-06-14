@@ -2,16 +2,20 @@ package com.ironhack.Artgramserver.service.impl;
 
 import com.ironhack.Artgramserver.DTO.CommentDTO;
 import com.ironhack.Artgramserver.model.Comment;
+import com.ironhack.Artgramserver.model.Painting;
+import com.ironhack.Artgramserver.model.User;
 import com.ironhack.Artgramserver.repository.CommentRepository;
 import com.ironhack.Artgramserver.repository.PaintingRepository;
 import com.ironhack.Artgramserver.repository.UserRepository;
+import com.ironhack.Artgramserver.service.interfaces.CommentServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class CommentService {
+public class CommentService implements CommentServiceInterface {
     @Autowired
     private CommentRepository commentRepository;
 
@@ -27,15 +31,19 @@ public class CommentService {
     @Autowired
     private UserService userService;
 
-    public void saveComment(CommentDTO commentDTO){
+    public Comment findById(Long id) {
+        return commentRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Comment not found"));
+    }
+
+    public void saveComment(CommentDTO commentDTO, Authentication authentication){
+        System.out.println(commentDTO);
+        String email = (String) authentication.getPrincipal();
+        User userFromDb = userRepository.findByEmail(email);
         Comment newComment = new Comment();
         newComment.setComment(commentDTO.getComment());
         newComment.setPainting(paintingRepository.findById(commentDTO.getPaintingId()).get());
-        newComment.setUser(userRepository.findById(commentDTO.getUserId()).get());
-        newComment.setUser(userRepository.findByName(commentDTO.getUserName().getName()).get());
+        newComment.setUser(userFromDb);
         commentRepository.save(newComment);
-
-
 
     }
 

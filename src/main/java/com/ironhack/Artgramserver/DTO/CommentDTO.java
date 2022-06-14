@@ -17,6 +17,4 @@ public class CommentDTO {
     private String comment;
     private Long paintingId;
     private Long userId;
-    private User userName;
-
 }
