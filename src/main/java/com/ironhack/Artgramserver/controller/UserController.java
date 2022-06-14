@@ -25,6 +25,12 @@ public class UserController {
         return userService.findById(userId);
     }
 
+    @GetMapping("/search/{name}")
+    @ResponseStatus(HttpStatus.OK)
+    public User getUserByName(@RequestBody String userName){
+        return userService.getUserByName(userName);
+    }
+
     @PutMapping("/profile/edit")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateUser(@PathVariable Long id,@RequestBody @Valid User user){
