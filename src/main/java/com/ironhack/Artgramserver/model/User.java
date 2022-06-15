@@ -33,6 +33,7 @@ public class User {
             message = "Password must have at least 6 characters and contain at least one number, one lowercase and one uppercase letter.")
     private String password;
 
+    @Lob
     private String avatar;
 
     @ManyToMany(fetch = FetchType.EAGER)

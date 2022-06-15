@@ -23,7 +23,6 @@ public class Painting {
     private String title;
     private String description;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
