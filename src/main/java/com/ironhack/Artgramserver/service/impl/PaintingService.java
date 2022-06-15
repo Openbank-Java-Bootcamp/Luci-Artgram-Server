@@ -51,8 +51,10 @@ public class PaintingService implements PaintingServiceInterface {
 
     public void updatePainting(Long id, Painting painting) {
         Painting paintingFromDB = paintingRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Painting not found"));
-        painting.setId(paintingFromDB.getId());
-        paintingRepository.save(painting);
+        paintingFromDB.setPicturePath(painting.getPicturePath());
+        paintingFromDB.setDescription(painting.getDescription());
+        paintingFromDB.setTitle(painting.getTitle());
+        paintingRepository.save(paintingFromDB);
     }
 
 
