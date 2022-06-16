@@ -28,7 +28,7 @@ public class LoveService implements LoveServiceInterface {
     private LoveRepository loveRepository;
 
 
-
+    // @desc add one Like
     public Love addPaintingLove(Long paintingId, User currentUser) {
         Painting painting = paintingRepository.findById(paintingId).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Painting not found"));
@@ -44,7 +44,7 @@ public class LoveService implements LoveServiceInterface {
        return loveRepository.save(loveObject);
 
     }
-
+    // @desc get count of Likes
     @Override
     public LoveCountDTO getLovesCountByPaintingId(Long paintingId) {
         Long count = loveRepository.countByPaintingId(paintingId);

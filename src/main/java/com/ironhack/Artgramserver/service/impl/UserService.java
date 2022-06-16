@@ -31,23 +31,24 @@ public class UserService implements UserServiceInterface, UserDetailsService {
     @Autowired
     private RoleRepository roleRepository;
 
+    // @desc find one User by his id
     public User findById(Long id){
         return userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 
-
+    // @desc find one User by his name
     public User getUserByName(String name) {
         return userRepository.findByName(name).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 
-
+    // @desc add a new User when Sign Up
     public User saveUser(User userSignupDTO) {
         log.info("Saving a new user {} inside of the database", userSignupDTO.getName());
         User user = new User(userSignupDTO.getName(), userSignupDTO.getEmail(), userSignupDTO.getPassword(), userSignupDTO.getAvatar());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
-
+    // @desc Update User info
     @Override
     public void updateUser(Long id, User user) {
         User userFromDB = userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not found"));
@@ -55,11 +56,13 @@ public class UserService implements UserServiceInterface, UserDetailsService {
         userRepository.save(user);
     }
 
+    // @desc get a list of all users
     public List<User> getUsers() {
         log.info("Fetching all users");
         return userRepository.findAll();
     }
 
+    // @desc find one User to Login
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);

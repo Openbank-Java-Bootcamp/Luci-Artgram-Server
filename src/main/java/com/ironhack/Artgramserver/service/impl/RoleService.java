@@ -18,12 +18,13 @@ public class RoleService implements RoleServiceInterface {
     @Autowired
     private UserRepository userRepository;
 
-
+    // @desc save a Role
     public Role saveRole(Role role) {
         log.info("Saving a new role {} to the database", role.getName());
         return roleRepository.save(role);
     }
 
+    // @desc add a Role to a User
     public void addRoleToUser(String email, String roleName) {
         User user = userRepository.findByEmail(email);
         Role role = roleRepository.findByName(roleName);

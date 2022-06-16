@@ -23,17 +23,17 @@ public class PaintingService implements PaintingServiceInterface {
     @Autowired
     private UserRepository userRepository;
 
-
+    // @desc find one Painting by its id
     public Painting findById(Long id) {
         return paintingRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Painting not found"));
     }
 
-
+    // @desc find one Painting by its user Id
     public List<Painting> findByUserId(Long userId) {
         return paintingRepository.findByUserId(userId);
     }
 
-
+    // @desc save new Painting
     public void savePainting(Painting painting, Authentication authentication) {
         String email = (String) authentication.getPrincipal();
         User userFromDb = userRepository.findByEmail(email);
@@ -48,7 +48,7 @@ public class PaintingService implements PaintingServiceInterface {
         paintingRepository.save(painting);
     }
 
-
+    // @desc edit one painting getting by its id
     public void updatePainting(Long id, Painting painting) {
         Painting paintingFromDB = paintingRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Painting not found"));
         paintingFromDB.setPicturePath(painting.getPicturePath());
@@ -57,7 +57,7 @@ public class PaintingService implements PaintingServiceInterface {
         paintingRepository.save(paintingFromDB);
     }
 
-
+    // @desc delete one Painting getting it by its id
     public void deletePainting(Long id) {
     Painting paintingFromDB = paintingRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Painting not found"));
         paintingRepository.deleteById(id);

@@ -31,10 +31,12 @@ public class CommentService implements CommentServiceInterface {
     @Autowired
     private UserService userService;
 
+    // @desc find one comment by its id
     public Comment findById(Long id) {
         return commentRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Comment not found"));
     }
 
+    // @desc add new comment when user is login
     public void saveComment(CommentDTO commentDTO, Authentication authentication){
         System.out.println(commentDTO);
         String email = (String) authentication.getPrincipal();
@@ -47,6 +49,7 @@ public class CommentService implements CommentServiceInterface {
 
     }
 
+    // @desc delete one comment
     public void deleteComment(Long id){
         Comment commentFromDB = commentRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Comment not found"));
         commentRepository.deleteById(id);
