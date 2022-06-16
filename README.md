@@ -27,7 +27,7 @@ MySQL, Spring Boot, Hibernate & JPA, & Java
 
 ## Models
 
-<img src="">
+<img src="https://github.com/Openbank-Java-Bootcamp/Luci-Artgram-Server/blob/master/ArtgramDiagram.drawio.png">
 
 ## Server Routes
   <img src="">
