@@ -39,7 +39,7 @@ MySQL, Spring Boot, Hibernate & JPA, & Java
 - Improve Comments
 - Add search Bar
 - Add Edit Profile
-- Add Save Painting
+- Add Save Paintings from another artists
 
 ## Resources
 - Throwing Exceptions: https://rollbar.com/guides/java/how-to-throw-exceptions-in-java/
