@@ -1,5 +1,5 @@
 # ARTGRAM 
-<img src="https://github.com/Openbank-Java-Bootcamp/Luci-Artgram-Server/blob/master/ARTGRAM.png" width="50px">
+<img src="https://github.com/Openbank-Java-Bootcamp/Luci-Artgram-Server/blob/master/ARTGRAM.png" width="100px" align-items="center">
 
 ## Description
 In this REST API project I built a social network. The system has 5 Models:
